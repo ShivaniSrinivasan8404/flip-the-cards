@@ -8,6 +8,10 @@ FLIP THE CARDS is an interactive memory game developed as a group project for co
 - Mahalakshmi – Developer
 - Ramya – Developer
 - Shivani – Developer
+## project contributions
+This project was developed collaboratively as a group.
+The repository is maintained by one representative.
+
 ##  Technologies Used
 - Python
 - Tkinter
@@ -19,3 +23,4 @@ FLIP THE CARDS is an interactive memory game developed as a group project for co
 3. Run:
    ```bash
    python main.py
+
