@@ -3,9 +3,6 @@ from tkinter import messagebox
 import random
 import time
 
-# -------------------------------------------------
-# SETTINGS
-# -------------------------------------------------
 EMOJIS = ["🐶","🐱","🐼","🐵","🦊","🐸","🐯","🐷","🐙","🐰"]
 FONT = ("Segoe UI Emoji", 48)
 BACKGROUND = "#0ecbe8"
@@ -15,9 +12,9 @@ MATCH_COLOR = "#78e76e"
 
 HIGH_SCORE = None  # Stores best time this session
 
-# -------------------------------------------------
+
 # GAME CLASS
-# -------------------------------------------------
+
 class EmojiFlipGame:
     def __init__(self, root):
         self.root = root
@@ -33,7 +30,7 @@ class EmojiFlipGame:
 
         self.update_timer()  # Start timer loop
 
-    # ---------------- TIMER ----------------
+    #  TIMER
     def create_timer_label(self):
         self.timer_label = tk.Label(
             self.root,
@@ -53,7 +50,7 @@ class EmojiFlipGame:
 
         self.root.after(100, self.update_timer)
 
-    # ---------------- MENU BAR ----------------
+    # MENU BAR
     def make_menu(self):
         menubar = tk.Menu(self.root)
         game_menu = tk.Menu(menubar, tearoff=0)
@@ -64,7 +61,7 @@ class EmojiFlipGame:
         menubar.add_cascade(label="Game", menu=game_menu)
         self.root.config(menu=menubar)
 
-    # ---------------- BOARD SETUP ----------------
+    #  BOARD SETUP
     def create_game_board(self):
         emojis = random.sample(EMOJIS, 8)
         self.cards = emojis * 2
@@ -96,7 +93,7 @@ class EmojiFlipGame:
                 index += 1
             self.buttons.append(row)
 
-    # ---------------- FLIP ANIMATION ----------------
+    # FLIP ANIMATION 
     def animate_flip(self, btn, emoji):
         for size in range(35, 5, -3):  
             btn.config(font=("Segoe UI Emoji", size))
@@ -108,7 +105,7 @@ class EmojiFlipGame:
             btn.config(font=("Segoe UI Emoji", size))
             btn.update()
 
-    # ---------------- GAME LOGIC ----------------
+    # GAME LOGIC
     def flip_card(self, index):
         r, c = divmod(index, 4)
         btn = self.buttons[r][c]
@@ -143,7 +140,7 @@ class EmojiFlipGame:
         b1.config(text="❔", bg=CARD_COLOR, font=("Segoe UI Emoji", 35))
         b2.config(text="❔", bg=CARD_COLOR, font=("Segoe UI Emoji", 35))
 
-    # ---------------- SCOREBOARD POPUP ----------------
+    #SCOREBOARD POPUP
     def show_scoreboard(self):
         global HIGH_SCORE
 
@@ -193,22 +190,20 @@ class EmojiFlipGame:
                   width=15,
                   command=self.root.quit).pack()
 
-    # ---------------- RESTART ----------------
+    # RESTART
     def restart(self):
         self.frame.destroy()
         self.matched = 0
         self.first = None
         self.start_time = time.time()
         self.create_game_board()
-
-
-# -------------------------------------------------
 # RUN GAME
-# -------------------------------------------------
+
 root = tk.Tk()
 root.geometry("650x650")
 EmojiFlipGame(root)
 root.mainloop()
+
 
 
 
